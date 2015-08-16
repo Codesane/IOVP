@@ -1,7 +1,9 @@
 package com.preprocessor.impl;
 
-import com.preprocessor.api.*;
-import com.preprocessor.api.Applier;
+import com.preprocessor.api.DiParameterizedLayer;
+import com.preprocessor.api.MonoParameterizedLayer;
+import com.preprocessor.api.Pipeline;
+import com.preprocessor.api.Validate;
 import com.preprocessor.transformers.DiTransformer;
 
 /**
@@ -22,8 +24,8 @@ public class SecondLayer<M, A, B> implements DiParameterizedLayer<M, A, B> {
 	}
 
 	@Override
-	public <R> Applier<M, R> transform(DiTransformer<R, A, B> transformer) {
-		return new ValueApplier<>(this.pipeline, transformer.transform(this.value1, this.value2));
+	public <V> MonoParameterizedLayer<M, V> transform(DiTransformer<V, A, B> transformer) {
+		return new FirstLayer<>(this.pipeline, transformer.transform(this.value1, this.value2));
 	}
 
 	@Override

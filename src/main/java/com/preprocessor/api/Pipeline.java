@@ -8,12 +8,12 @@ public interface Pipeline<M> {
 	/**
 	 *
 	 * */
-	<A> UniParameterizedLayer<M, A> with(A value);
+	<A> MonoParameterizedLayer<M, A> with(A value);
 
 	/**
 	 *
 	 * */
-	<A> UniParameterizedLayer<M, A> with(Provider<A, M> provider);
+	<A> MonoParameterizedLayer<M, A> with(Provider<A, M> provider);
 
 	/**
 	 *

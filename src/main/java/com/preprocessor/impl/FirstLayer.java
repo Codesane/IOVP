@@ -1,14 +1,14 @@
 package com.preprocessor.impl;
 
 import com.preprocessor.api.*;
-import com.preprocessor.transformers.UniTransformer;
+import com.preprocessor.transformers.MonoTransformer;
 
 import java.util.Objects;
 
 /**
  * Created by felix on 8/16/15.
  */
-public class FirstLayer<M, A> implements UniParameterizedLayer<M, A> {
+public class FirstLayer<M, A> implements MonoParameterizedLayer<M, A> {
 
 	private final Pipeline<M> root;
 
@@ -26,15 +26,22 @@ public class FirstLayer<M, A> implements UniParameterizedLayer<M, A> {
 	}
 
 	@Override
-	public UniParameterizedLayer<M, A> validate(Validate<A> validate) {
+	public MonoParameterizedLayer<M, A> validate(Validate<A> validate) {
 		validate.validate(this.value1);
 
 		return this;
 	}
 
 	@Override
-	public <R> ValueApplier<M, R> transform(UniTransformer<R, A> transformer) {
-		return new ValueApplier<>(this.root, transformer.transform(this.value1));
+	public Pipeline<M> apply(Applier<M, A> applyFunc) {
+		applyFunc.apply(this.root.getModel(), this.value1);
+
+		return this.root;
+	}
+
+	@Override
+	public <V> MonoParameterizedLayer<M, V> transform(MonoTransformer<V, A> transformer) {
+		return new FirstLayer<>(this.root, transformer.transform(this.value1));
 	}
 
 	@Override
@@ -43,7 +50,7 @@ public class FirstLayer<M, A> implements UniParameterizedLayer<M, A> {
 	}
 
 	@Override
-	public UniParameterizedLayer<M, A> notNull(String parameterName) {
+	public MonoParameterizedLayer<M, A> notNull(String parameterName) {
 		Objects.requireNonNull(parameterName);
 
 		if(this.value1 == null) {

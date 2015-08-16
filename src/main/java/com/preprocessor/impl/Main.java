@@ -13,13 +13,15 @@ public class Main {
 		Long endTime = System.currentTimeMillis();
 
 		try {
-			new SimplePipeline<>(new MyPojo())
+			MyPojo pojo = new SimplePipeline<>(new MyPojo())
 					.with(startTime)
 					.notNull("startTime")
 					.withResourceProvider(new MyResourceProvider())
-					.notNull("endTime")
 					.transform(Interval::new)
-					.apply(MyPojo::setInterval);
+					.apply(MyPojo::setInterval)
+					.getModel();
+
+			System.out.println(pojo.getInterval());
 
 		} catch(PipelineException e) {
 			System.out.println(e.getRes().getMessage());
@@ -31,7 +33,7 @@ public class Main {
 	class MyResourceProvider implements ResourceProvider<Long> {
 		@Override
 		public Long provideResource() {
-			return 123L;
+			return 124L;
 		}
 	}
 
