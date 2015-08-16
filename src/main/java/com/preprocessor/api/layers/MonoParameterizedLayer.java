@@ -1,11 +1,14 @@
-package com.preprocessor.api;
+package com.preprocessor.api.layers;
 
+import com.preprocessor.api.Applier;
+import com.preprocessor.api.Pipeline;
+import com.preprocessor.api.ResourceProvider;
 import com.preprocessor.transformers.MonoTransformer;
 
 /**
  * Created by felix on 8/15/15.
  */
-public interface MonoParameterizedLayer<M, A> extends CompositeUniformLayer<MonoParameterizedLayer<M, A>, A> {
+public interface MonoParameterizedLayer<M, A> extends BaseLayer<MonoParameterizedLayer<M, A>, A> {
 
 	Pipeline<M> apply(Applier<M, A> applyFunc);
 

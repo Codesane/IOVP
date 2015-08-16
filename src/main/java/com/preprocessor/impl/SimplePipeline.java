@@ -2,7 +2,7 @@ package com.preprocessor.impl;
 
 import com.preprocessor.api.Pipeline;
 import com.preprocessor.api.Provider;
-import com.preprocessor.api.MonoParameterizedLayer;
+import com.preprocessor.api.layers.MonoParameterizedLayer;
 
 /**
  * Created by felix on 8/16/15.

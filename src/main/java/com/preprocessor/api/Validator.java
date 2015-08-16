@@ -1,8 +1,9 @@
 package com.preprocessor.api;
 
 /**
- * Created by felix on 8/16/15.
+ * Created by felix on 8/15/15.
  */
-public interface Validator<R, T> {
-	R validate(Validate<T> validate);
+@FunctionalInterface
+public interface Validator<T> {
+	void validate(T value);
 }

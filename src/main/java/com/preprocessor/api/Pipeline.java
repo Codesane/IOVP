@@ -1,5 +1,7 @@
 package com.preprocessor.api;
 
+import com.preprocessor.api.layers.MonoParameterizedLayer;
+
 /**
  * Created by felix on 8/15/15.
  */

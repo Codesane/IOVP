@@ -1,9 +1,9 @@
 package com.preprocessor.impl;
 
-import com.preprocessor.api.DiParameterizedLayer;
-import com.preprocessor.api.MonoParameterizedLayer;
+import com.preprocessor.api.layers.DiParameterizedLayer;
+import com.preprocessor.api.layers.MonoParameterizedLayer;
 import com.preprocessor.api.Pipeline;
-import com.preprocessor.api.Validate;
+import com.preprocessor.api.Validator;
 import com.preprocessor.transformers.DiTransformer;
 
 /**
@@ -30,12 +30,11 @@ public class SecondLayer<M, A, B> implements DiParameterizedLayer<M, A, B> {
 
 	@Override
 	public DiParameterizedLayer<M, A, B> notNull(String parameterName) {
-		return null;
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
-
 	@Override
-	public DiParameterizedLayer<M, A, B> validate(Validate<B> validate) {
+	public DiParameterizedLayer<M, A, B> validate(Validator<B> validate) {
 		validate.validate(value2);
 		return this;
 	}

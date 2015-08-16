@@ -12,6 +12,13 @@ public class Main {
 		Long startTime = 123L;
 		Long endTime = System.currentTimeMillis();
 
+		new SimplePipeline<>(new MyPojo())
+				.with(startTime)
+				.with(endTime)
+				.transform(Interval::new)
+				.apply(MyPojo::setInterval);
+
+
 		try {
 			MyPojo pojo = new SimplePipeline<>(new MyPojo())
 					.with(startTime)

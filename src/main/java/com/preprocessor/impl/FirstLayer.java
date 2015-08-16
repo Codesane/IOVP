@@ -1,6 +1,8 @@
 package com.preprocessor.impl;
 
 import com.preprocessor.api.*;
+import com.preprocessor.api.layers.DiParameterizedLayer;
+import com.preprocessor.api.layers.MonoParameterizedLayer;
 import com.preprocessor.transformers.MonoTransformer;
 
 import java.util.Objects;
@@ -26,7 +28,7 @@ public class FirstLayer<M, A> implements MonoParameterizedLayer<M, A> {
 	}
 
 	@Override
-	public MonoParameterizedLayer<M, A> validate(Validate<A> validate) {
+	public MonoParameterizedLayer<M, A> validate(Validator<A> validate) {
 		validate.validate(this.value1);
 
 		return this;
